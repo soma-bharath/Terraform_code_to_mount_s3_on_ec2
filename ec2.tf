@@ -19,6 +19,7 @@ resource "aws_instance" "instances" {
     #!/bin/bash
     sudo yum update -y
     sudo yum install -y s3fs-fuse
+    sudo yum install docker -y
     echo "s3_bucket_name = ${var.s3_bucket_name}" > /tmp/user-data
     S3_BUCKET_NAME=$(curl -s http://169.254.169.254/latest/user-data | grep -oP '(?<=s3_bucket_name = ).*')
     MOUNT_POINT="/mnt/s3"
@@ -43,8 +44,6 @@ sudo chown ec2-user:ec2-user $MOUNT_POINT
 # Example: Create a test file in the mounted S3 bucket
 sudo touch $MOUNT_POINT/test.txt
 sudo echo "This is a test file" | sudo tee -a $MOUNT_POINT/test.txt
-
-sudo yum install docker -y
 
 # End of user data script
   EOF
