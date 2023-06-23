@@ -25,7 +25,7 @@ resource "aws_instance" "instances" {
     MOUNT_POINT="/mnt/s3"
 
 # Fetch the IAM role name from Terraform output
-IAM_ROLE_NAME=IAM_ROLE_NAME=$(aws iam list-roles --query "Roles[?contains(Arn,'$(curl -s http://169.254.169.254/latest/meta-data/instance-id)')].RoleName" --output text)
+IAM_ROLE_NAME=$(aws iam list-roles --query "Roles[?contains(Arn,'$(curl -s http://169.254.169.254/latest/meta-data/instance-id)')].RoleName" --output text)
 
 # Create the mount point directory
 sudo mkdir -p $MOUNT_POINT
