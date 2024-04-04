@@ -1,7 +1,7 @@
 #218453391514
 variable "availability_zones" {
   type    = list(string)
-  default = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
+  default = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
 variable "subnet_names" {
