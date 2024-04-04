@@ -6,7 +6,7 @@ resource "aws_iam_instance_profile" "demo-profile" {
 
 resource "aws_instance" "instances" {
   count         = length(var.instance_names)
-  ami           = "ami-057752b3f1d6c4d6c"  # Replace with your desired AMI ID
+  ami           = "ami-0395649fbe870727e"  # Replace with your desired AMI ID
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnets[count.index].id
   vpc_security_group_ids = [aws_security_group.my_sg.id]
