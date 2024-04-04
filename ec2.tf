@@ -19,8 +19,9 @@ resource "aws_instance" "instances" {
     #!/bin/bash
     sudo yum update -y
     bucket_name=$(aws s3 ls | awk -F" " '{print($3)}')
-    sudo wget https://s3.amaonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm
+    sudo wget https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm
     sudo yum install -y ./mount-s3.rpm
+    sudo yum install -y docker
     mkdir /home/ec2-user/localpath
     mount-s3 $bucket_name /home/ec2-user/localpath
 # End of user data script
